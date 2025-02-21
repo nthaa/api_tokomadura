@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PurchaseDetail;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,13 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             QuoteSeeder::class,
+            SupplierSeeder::class,
+            ProductSeeder::class,
+            SaleSeeder::class,
+            SaleDetailSeeder::class,
+            PurchaseSeeder::class,
+            PurchaseDetailSeeder::class,
+
         ]);
     }
 }

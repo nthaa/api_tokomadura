@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Supplier;
+use App\Models\Purchase;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SupplierSeeder extends Seeder
+class PurchaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,7 @@ class SupplierSeeder extends Seeder
     public function run(): void
     {
         //
-        Supplier::factory()->count(25)->create();
+       Purchase ::factory()->count(25)->create();
+
     }
 }

@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('suppliers', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_supplier');
-            $table->string('nama_toko');
-            $table->string('alamat');
-            $table->string('no_telp');
+            // Menghubungkan ke tabel supplier
+            $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
+            $table->date('tanggal');
+            $table->time('jam');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('purchases');
     }
 };
