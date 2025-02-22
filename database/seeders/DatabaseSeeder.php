@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\PurchaseDetail;
+use App\Models\TempSale;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -30,7 +31,7 @@ class DatabaseSeeder extends Seeder
             SaleDetailSeeder::class,
             PurchaseSeeder::class,
             PurchaseDetailSeeder::class,
-
+            TempSaleSeeder::class,
         ]);
     }
 }
