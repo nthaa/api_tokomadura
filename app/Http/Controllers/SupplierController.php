@@ -6,6 +6,7 @@ use App\Models\Supplier;
 use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
 
+
 class SupplierController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $supplier=Supplier::all();
+        return view('Supplier.supplier', ['supplier'=>$supplier]);
     }
 
     /**
