@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
-
+use App\Http\Resources\SupplierResource;
 
 class SupplierController extends Controller
 {
@@ -14,16 +14,10 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $supplier=Supplier::all();
-        return view('Supplier.supplier', ['supplier'=>$supplier]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        // $supplier=Supplier::all();
+        // return view('Supplier.supplier', ['supplier'=>$supplier]);
+        // return SupplierResource::collection(Supplier::paginate(5));
+        return SupplierResource::collection(Supplier::all());
     }
 
     /**
@@ -32,6 +26,9 @@ class SupplierController extends Controller
     public function store(StoreSupplierRequest $request)
     {
         //
+        // return new SupplierResource(Supplier::create($request->validated()));
+        $supplier = Supplier::create($request->validated());
+        return new SupplierResource($supplier);
     }
 
     /**
@@ -40,15 +37,7 @@ class SupplierController extends Controller
     public function show(Supplier $supplier)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Supplier $supplier)
-    {
-        //
-
+        return new SupplierResource($supplier);
     }
 
     /**
@@ -57,6 +46,9 @@ class SupplierController extends Controller
     public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
         //
+        // return new SupplierResource(tap($supplier)->update($request->validated()));
+        $supplier->update($request->validated());
+        return new SupplierResource($supplier);
     }
 
     /**
@@ -65,5 +57,7 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         //
+        $supplier->delete();
+        return response()->json(['message' => 'Supplier deleted successfully']);
     }
 }

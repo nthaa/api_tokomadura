@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSupplierRequest extends FormRequest
+class UpdateTempPurchaseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,10 +23,6 @@ class UpdateSupplierRequest extends FormRequest
     {
         return [
             //
-            'nama' => 'required|max:50',
-            'toko' => 'required|max:50',
-            'alamat' => 'required|max:100',
-            'no_telp' => 'required|max:15',
         ];
     }
 }

@@ -11,7 +11,7 @@ class StoreSupplierRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,10 @@ class StoreSupplierRequest extends FormRequest
     {
         return [
             //
+            'nama' => 'required|max:50',
+            'toko' => 'required|max:50',
+            'alamat' => 'required|max:100',
+            'no_telp' => 'required|max:15',
         ];
     }
 }

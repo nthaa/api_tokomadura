@@ -17,12 +17,11 @@ class TempSaleFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id' => $this->faker->unique()->randomNumber(),
             'nama' => $this->faker->name(),
-            'jumlah' => $this->faker->randomNumber(),
+            'jumlah' => $this->faker->randomNumber(1,100),
             'harga' => $this->faker->numberBetween(1000, 10000),
-            'total' => $this->faker->randomNumber(),
-            'id_user' => $this->faker->unique()->randomNumber()
+            'total' => $this->faker->numberBetween(10000, 100000),
+
         ];
     }
 }

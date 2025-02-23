@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Supplier>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TempPurchase>
  */
-class SupplierFactory extends Factory
+class TempPurchaseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,9 +19,9 @@ class SupplierFactory extends Factory
         return [
             //
             'nama' => $this->faker->name(),
-            'toko' => $this->faker->company(),
-            'alamat' => $this->faker->address(),
-            'no_telp' => $this->faker->phoneNumber(),
+            'jumlah' => $this->faker->randomNumber(1,100),
+            'harga' => $this->faker->numberBetween(1000, 10000),
+            'total' => $this->faker->numberBetween(10000, 100000),
         ];
     }
 }

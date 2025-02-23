@@ -22,7 +22,7 @@ class SaleDetailSeeder extends Seeder
 
          // Pastikan ada data di sales dan products
          if ($sales->isEmpty() || $products->isEmpty()) {
-             dd('Sales atau Products kosong');
+            //  dd('Sales atau Products kosong');
          }
 
          // Membuat data SaleDetail dengan sale_id dan product_id yang valid
@@ -33,7 +33,7 @@ class SaleDetailSeeder extends Seeder
                  'product_id' => $products->random()->id,  // Random product_id dari tabel products
              ]);
 
-         dd('SaleDetail seeder selesai');
+        //  dd('SaleDetail seeder selesai');
      }
 
 }

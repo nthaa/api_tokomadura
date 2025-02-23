@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Supplier;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class PurchaseFactory extends Factory
     {
         return [
             //
+           'supplier_id' => Supplier::factory(),
             'tanggal' => $this->faker->date(),
             'jam' => $this->faker->time(),
         ];
