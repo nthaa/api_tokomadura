@@ -14,10 +14,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        // $supplier=Supplier::all();
-        // return view('Supplier.supplier', ['supplier'=>$supplier]);
-        // return SupplierResource::collection(Supplier::paginate(5));
-        return SupplierResource::collection(Supplier::all());
+
+        return SupplierResource::collection(Supplier::paginate(5));
+        // return SupplierResource::collection(Supplier::all());
     }
 
     /**

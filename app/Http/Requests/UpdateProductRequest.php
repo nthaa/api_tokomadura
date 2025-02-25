@@ -11,7 +11,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,12 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             //
+            'nama_produk' => 'required|max:50',
+            'harga_beli' => 'required|numeric|min:0',
+            'harga_jual' => 'required|numeric|min:0|gt:harga_beli',
+            'stok' => 'required|integer|min:0',
+            'satuan' => 'required|string|in:pcs,karton',
+            'barcode' => 'nullable|string|max:50|unique:products,barcode',
         ];
     }
 }

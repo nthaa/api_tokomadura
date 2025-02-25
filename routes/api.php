@@ -19,12 +19,12 @@ Route::get('/hello', function () {
 // route middleware for authenticated user
 Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/quote', QuoteController::class);
-    Route::apiResource('/product', ProductController::class);
     Route::post('/logout', [ApiAuthController::class, 'logout']);
 
 });
 // Route::apiResource('/supplier', SupplierController::class);
 Route::apiResource('/supplier', SupplierController::class);
+Route::apiResource('/product', ProductController::class);
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);

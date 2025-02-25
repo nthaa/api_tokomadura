@@ -23,7 +23,7 @@ class SupplierResource extends JsonResource
             'nama' => $this->nama,
             'toko' => $this->toko,
             'alamat' => $this->alamat,
-            'no_telp' => $this->no_telp,
+            'nomor_telp' => $this->no_telp,
         ];
     }
 }
