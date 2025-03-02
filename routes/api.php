@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\SaleDetailController;
 use App\Http\Controllers\SupplierController;
@@ -26,7 +27,11 @@ Route::middleware('auth:sanctum')->group(function(){
 // Route::apiResource('/supplier', SupplierController::class);
 Route::apiResource('/supplier', SupplierController::class);
 Route::apiResource('/product', ProductController::class);
+<<<<<<< HEAD
 Route::apiResource('/saledetail', SaleDetailController::class);
+=======
+Route::apiResource('/purchase', PurchaseController::class);
+>>>>>>> 065d0b175d65d16b4b0400498c91747002d388e2
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);
