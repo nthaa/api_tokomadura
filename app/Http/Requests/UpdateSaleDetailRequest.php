@@ -11,7 +11,7 @@ class UpdateSaleDetailRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,8 @@ class UpdateSaleDetailRequest extends FormRequest
     {
         return [
             //
+            'jumlah' => 'required|integer|min:1',
+            'harga_jual_trx' => 'required|numeric|min:0',
         ];
     }
 }
