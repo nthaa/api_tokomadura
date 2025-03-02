@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
+use App\Http\Resources\SaleResource;
 
 class SaleController extends Controller
 {
@@ -14,6 +15,7 @@ class SaleController extends Controller
     public function index()
     {
         //
+        return SaleResource::collection(Sale::all());
     }
 
     /**
@@ -30,6 +32,7 @@ class SaleController extends Controller
     public function store(StoreSaleRequest $request)
     {
         //
+        return new SaleResource(Sale::create($request->validated()));
     }
 
     /**
@@ -38,6 +41,7 @@ class SaleController extends Controller
     public function show(Sale $sale)
     {
         //
+        return new SaleResource($sale);
     }
 
     /**
@@ -54,6 +58,7 @@ class SaleController extends Controller
     public function update(UpdateSaleRequest $request, Sale $sale)
     {
         //
+        return new SalaResource(tap($sale)->update($request->validated()));
     }
 
     /**
@@ -62,5 +67,7 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         //
+        $sale->delete();
+        return response()->json(['message' => 'Sale deleted successfully']);
     }
 }
