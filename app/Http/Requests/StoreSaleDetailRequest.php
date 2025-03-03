@@ -11,7 +11,7 @@ class StoreSaleDetailRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,10 @@ class StoreSaleDetailRequest extends FormRequest
     {
         return [
             //
+            'jumlah' => 'required|integer|min:1',
+            'hara_jual_trx' => 'required|numeric|min:0',
+
+
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SaleDetail;
 use App\Http\Requests\StoreSaleDetailRequest;
 use App\Http\Requests\UpdateSaleDetailRequest;
+use App\Http\Resources\SaleDetailResource;
 
 class SaleDetailController extends Controller
 {
@@ -14,22 +15,24 @@ class SaleDetailController extends Controller
     public function index()
     {
         //
+        return SaleDetailResource::collection(SaleDetail::paginate(10));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSaleDetailRequest $request)
+    public function store(StoreSaleDetailRequest $request, $saleId)
     {
         //
+        // Tambahkan sale_id ke dalam data validasi sebelum menyimpannya
+        $data = array_merge($request->validated(), ['sale_id' => $saleId]);
+
+        // Simpan ke database
+        $saleDetail = SaleDetail::create($data);
+
+        // Return sebagai resource
+        return new SaleDetailResource($saleDetail);
     }
 
     /**
@@ -38,22 +41,18 @@ class SaleDetailController extends Controller
     public function show(SaleDetail $saleDetail)
     {
         //
+        return new SaleDetailResource($saleDetail);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SaleDetail $saleDetail)
+    public function update(UpdateSaleDetailRequest $request, $saleId, $saleDetailId)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSaleDetailRequest $request, SaleDetail $saleDetail)
-    {
-        //
+        // return new SaleDetailResource(tap($saleDetail)->update($request->validated()));
+        $saleDetail = SaleDetail::where('sale_id', $saleId)->findOrFail($saleDetailId);
+
+        $saleDetail->update($request->validated());
+
+        return new SaleDetailResource($saleDetail);
     }
 
     /**
@@ -62,5 +61,7 @@ class SaleDetailController extends Controller
     public function destroy(SaleDetail $saleDetail)
     {
         //
+        $saleDetail->delete();
+        return response()->json(['message' => 'SaleDetail deleted seccesfully']);
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\SaleDetailController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,10 +24,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [ApiAuthController::class, 'logout']);
 
 });
-// Route::apiResource('/supplier', SupplierController::class);
+
 Route::apiResource('/supplier', SupplierController::class);
 Route::apiResource('/product', ProductController::class);
 Route::apiResource('/purchase', PurchaseController::class);
+Route::apiResource('/sale/{sale}/saledetail', SaleDetailController::class);
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);
