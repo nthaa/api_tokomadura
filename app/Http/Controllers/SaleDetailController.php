@@ -25,14 +25,8 @@ class SaleDetailController extends Controller
     public function store(StoreSaleDetailRequest $request, $saleId)
     {
         //
-        // Tambahkan sale_id ke dalam data validasi sebelum menyimpannya
-        $data = array_merge($request->validated(), ['sale_id' => $saleId]);
+        return new SaleDetailResource(SaleDetail::create($request->validated()));
 
-        // Simpan ke database
-        $saleDetail = SaleDetail::create($data);
-
-        // Return sebagai resource
-        return new SaleDetailResource($saleDetail);
     }
 
     /**
@@ -44,15 +38,11 @@ class SaleDetailController extends Controller
         return new SaleDetailResource($saleDetail);
     }
 
-    public function update(UpdateSaleDetailRequest $request, $saleId, $saleDetailId)
+    public function update(UpdateSaleDetailRequest $request, SaleDetail $saleDetail)
     {
 
-        // return new SaleDetailResource(tap($saleDetail)->update($request->validated()));
-        $saleDetail = SaleDetail::where('sale_id', $saleId)->findOrFail($saleDetailId);
+        return new SaleDetailResource(tap($saleDetail)->update($request->validated()));
 
-        $saleDetail->update($request->validated());
-
-        return new SaleDetailResource($saleDetail);
     }
 
     /**
