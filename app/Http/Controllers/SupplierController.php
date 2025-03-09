@@ -15,8 +15,7 @@ class SupplierController extends Controller
     public function index()
     {
 
-        return SupplierResource::collection(Supplier::paginate(5));
-        // return SupplierResource::collection(Supplier::all());
+        return SupplierResource::collection(Supplier::paginate(10));
     }
 
     /**

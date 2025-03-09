@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PurchaseDetail;
 use App\Http\Requests\StorePurchaseDetailRequest;
 use App\Http\Requests\UpdatePurchaseDetailRequest;
+use App\Http\Resources\PurchaseDetailResource;
 
 class PurchaseDetailController extends Controller
 {
@@ -14,14 +15,7 @@ class PurchaseDetailController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return PurchaseDetailResource::collection(PurchaseDetail::paginate(10));
     }
 
     /**
@@ -30,6 +24,7 @@ class PurchaseDetailController extends Controller
     public function store(StorePurchaseDetailRequest $request)
     {
         //
+        return new PurchaseDetailResource(PurchaseDetail::create($request->validated()));
     }
 
     /**
@@ -38,15 +33,9 @@ class PurchaseDetailController extends Controller
     public function show(PurchaseDetail $purchaseDetail)
     {
         //
+        return new PurchaseDetailResource($purchaseDetail);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PurchaseDetail $purchaseDetail)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -54,6 +43,8 @@ class PurchaseDetailController extends Controller
     public function update(UpdatePurchaseDetailRequest $request, PurchaseDetail $purchaseDetail)
     {
         //
+        return new PurchaseDetailResource(tap($purchaseDetail)->update($request->validated()));
+
     }
 
     /**
@@ -62,5 +53,7 @@ class PurchaseDetailController extends Controller
     public function destroy(PurchaseDetail $purchaseDetail)
     {
         //
+        $purchaseDetail->delete();
+        return response()->json(['message' => 'PurchaseDetail deleted seccesfully']);
     }
 }

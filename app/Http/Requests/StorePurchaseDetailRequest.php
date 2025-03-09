@@ -23,6 +23,8 @@ class StorePurchaseDetailRequest extends FormRequest
     {
         return [
             //
+            'harga_beli' => 'required|numeric|min:0',
+            'jumlah' => 'required|integer|min:1',
         ];
     }
 }

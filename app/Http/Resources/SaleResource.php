@@ -21,6 +21,7 @@ class SaleResource extends JsonResource
             'diterima' => $this->diterima,
             'tanggal' => $this->tanggal,
             'jam' => $this->jam,
+            'sale_details' => SaleDetailResource::collection($this->saleDetails),
         ];
     }
 

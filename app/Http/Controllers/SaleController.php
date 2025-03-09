@@ -15,7 +15,8 @@ class SaleController extends Controller
     public function index()
     {
         //
-        return SaleResource::collection(Sale::all());
+        return SaleResource::collection(Sale::paginate(10));
+
     }
 
 

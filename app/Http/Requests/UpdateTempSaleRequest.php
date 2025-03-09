@@ -11,7 +11,7 @@ class UpdateTempSaleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,16 @@ class UpdateTempSaleRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->merge([
+            'total' => $this->input('jumlah') * $this->input('harga')
+        ]);
+
         return [
             //
+            'nama' => 'required|max:50',
+            'jumlah' => 'required|integer|min:1',
+            'harga' => 'required|numeric|min:0',
+            'total' => 'required|numeric|min:0',
         ];
     }
 }

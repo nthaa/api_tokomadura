@@ -7,6 +7,8 @@ use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\SaleDetailController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\TempPurchaseController;
+use App\Http\Controllers\TempSaleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +28,17 @@ Route::middleware('auth:sanctum')->group(function(){
 
 });
 
-Route::apiResource('/supplier', SupplierController::class);
-Route::apiResource('/product', ProductController::class);
-Route::apiResource('/sale', SaleController::class);
-Route::apiResource('/saledetail', SaleDetailController::class);
-Route::apiResource('/purchase', PurchaseController::class);
+Route::apiResource('/suppliers', SupplierController::class);
+Route::apiResource('/products', ProductController::class);
+Route::apiResource('/sales', SaleController::class);
+Route::apiResource('/sale-details', SaleDetailController::class);
+Route::apiResource('/purchases', PurchaseController::class);
+Route::apiResource('/purchase-details', SaleDetailController::class);
+Route::apiResource('/temp-sales', TempSaleController::class);
+Route::apiResource('/temp-purchases', TempPurchaseController::class);
+
+
+
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);

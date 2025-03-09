@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TempSale;
 use App\Http\Requests\StoreTempSaleRequest;
 use App\Http\Requests\UpdateTempSaleRequest;
+use App\Http\Resources\TempSaleResource;
 
 class TempSaleController extends Controller
 {
@@ -14,14 +15,8 @@ class TempSaleController extends Controller
     public function index()
     {
         //
-    }
+        return TempSaleResource::collection(TempSale::paginate(10));
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -30,6 +25,8 @@ class TempSaleController extends Controller
     public function store(StoreTempSaleRequest $request)
     {
         //
+        return new TempSaleResource(TempSale::create($request->validated()));
+
     }
 
     /**
@@ -38,15 +35,9 @@ class TempSaleController extends Controller
     public function show(TempSale $tempSale)
     {
         //
+        return new TempSaleResource($tempSale);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TempSale $tempSale)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -54,6 +45,7 @@ class TempSaleController extends Controller
     public function update(UpdateTempSaleRequest $request, TempSale $tempSale)
     {
         //
+        return new TempSaleResource(tap($tempSale)->update($request->validated()));
     }
 
     /**
@@ -62,5 +54,7 @@ class TempSaleController extends Controller
     public function destroy(TempSale $tempSale)
     {
         //
+        $tempSale->delete();
+        return response()->json(['message' => 'TempPurchase deleted successfully']);
     }
 }

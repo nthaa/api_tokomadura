@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TempPurchase;
 use App\Http\Requests\StoreTempPurchaseRequest;
 use App\Http\Requests\UpdateTempPurchaseRequest;
+use App\Http\Resources\TempPurchaseResource;
 
 class TempPurchaseController extends Controller
 {
@@ -14,15 +15,9 @@ class TempPurchaseController extends Controller
     public function index()
     {
         //
+        return TempPurchaseResource::collection(TempPurchase::paginate(10));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -30,6 +25,8 @@ class TempPurchaseController extends Controller
     public function store(StoreTempPurchaseRequest $request)
     {
         //
+        return new TempPurchaseResource(TempPurchase::create($request->validated()));
+
     }
 
     /**
@@ -38,15 +35,9 @@ class TempPurchaseController extends Controller
     public function show(TempPurchase $tempPurchase)
     {
         //
+        return new TempPurchaseResource($tempPurchase);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TempPurchase $tempPurchase)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -54,6 +45,8 @@ class TempPurchaseController extends Controller
     public function update(UpdateTempPurchaseRequest $request, TempPurchase $tempPurchase)
     {
         //
+        return new TempPurchaseResource(tap($tempPurchase)->update($request->validated()));
+
     }
 
     /**
@@ -62,5 +55,7 @@ class TempPurchaseController extends Controller
     public function destroy(TempPurchase $tempPurchase)
     {
         //
+        $tempPurchase->delete();
+        return response()->json(['message' => 'TempPurchase deleted successfully']);
     }
 }

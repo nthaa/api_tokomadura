@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Purchase;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,6 +22,8 @@ class PurchaseResource extends JsonResource
             'supplier_id' => $this->supplier_id,
             'tanggal' => $this->tanggal,
             'jam' => $this->jam,
+            'purchase_details' => PurchaseDetailResource::collection($this->purchaseDetails),
+
         ];
     }
 }

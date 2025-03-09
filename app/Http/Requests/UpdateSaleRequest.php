@@ -11,7 +11,7 @@ class UpdateSaleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,9 @@ class UpdateSaleRequest extends FormRequest
     {
         return [
             //
+            'diterima' => 'required',
+            'tanggal' => 'required',
+            'jam' => 'required',
         ];
     }
 }

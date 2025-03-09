@@ -11,7 +11,7 @@ class UpdatePurchaseDetailRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,8 @@ class UpdatePurchaseDetailRequest extends FormRequest
     {
         return [
             //
+            'harga_beli' => 'required|numeric|min:0',
+            'jumlah' => 'required|integer|min:1',
         ];
     }
 }

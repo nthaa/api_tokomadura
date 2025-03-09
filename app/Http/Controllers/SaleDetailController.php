@@ -15,14 +15,14 @@ class SaleDetailController extends Controller
     public function index()
     {
         //
-          return SaleDetailResource::collection(SaleDetail::paginate(5));
+          return SaleDetailResource::collection(SaleDetail::paginate(10));
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSaleDetailRequest $request, $saleId)
+    public function store(StoreSaleDetailRequest $request)
     {
         //
         return new SaleDetailResource(SaleDetail::create($request->validated()));
@@ -40,8 +40,6 @@ class SaleDetailController extends Controller
 
     public function update(UpdateSaleDetailRequest $request, SaleDetail $saleDetail)
     {
-        return new SaleDetailResource(tap($saleDetail)->update($request->validated()));
-
         //
         return new SaleDetailResource(tap($saleDetail)->update($request->validated()));
 

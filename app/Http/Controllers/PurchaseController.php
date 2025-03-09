@@ -15,7 +15,8 @@ class PurchaseController extends Controller
     public function index()
     {
         //
-        return PurchaseResource::collection(Purchase::all());
+        return PurchaseResource::collection(Purchase::paginate(10));
+
     }
 
     /**
