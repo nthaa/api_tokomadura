@@ -15,7 +15,7 @@ class SaleDetailController extends Controller
     public function index()
     {
         //
-        return SaleDetailResource::collection(SaleDetail::paginate(10));
+          return SaleDetailResource::collection(SaleDetail::paginate(5));
     }
 
 
@@ -40,7 +40,9 @@ class SaleDetailController extends Controller
 
     public function update(UpdateSaleDetailRequest $request, SaleDetail $saleDetail)
     {
+        return new SaleDetailResource(tap($saleDetail)->update($request->validated()));
 
+        //
         return new SaleDetailResource(tap($saleDetail)->update($request->validated()));
 
     }

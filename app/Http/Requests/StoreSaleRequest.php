@@ -12,6 +12,7 @@ class StoreSaleRequest extends FormRequest
     public function authorize(): bool
     {
         return false;
+        return true;
     }
 
     /**
@@ -23,6 +24,9 @@ class StoreSaleRequest extends FormRequest
     {
         return [
             //
+            'diterima' => 'required',
+            'tanggal' => 'required',
+            'jam' => 'required',
         ];
     }
 }

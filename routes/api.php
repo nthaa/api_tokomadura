@@ -6,6 +6,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\SaleDetailController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\SaleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +28,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::apiResource('/supplier', SupplierController::class);
 Route::apiResource('/product', ProductController::class);
-Route::apiResource('/purchase', PurchaseController::class);
+Route::apiResource('/sale', SaleController::class);
 Route::apiResource('/saledetail', SaleDetailController::class);
+Route::apiResource('/purchase', PurchaseController::class);
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);
