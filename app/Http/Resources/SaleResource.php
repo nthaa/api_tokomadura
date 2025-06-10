@@ -18,10 +18,14 @@ class SaleResource extends JsonResource
 
         return[
             'id' => $this->id,
+            'total_harga' => $this->total_harga,
             'diterima' => $this->diterima,
+            'kembali' => $this->kembali,
             'tanggal' => $this->tanggal,
             'jam' => $this->jam,
+            // 'kasir' => $this->user->name,
             'sale_details' => SaleDetailResource::collection($this->saleDetails),
+
         ];
     }
 

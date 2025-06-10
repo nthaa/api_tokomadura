@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            // $table->foreignId('id_users')->constrained('users')->nullable()->change();
+            $table->integer('total_harga');
             $table->integer('diterima');
+            $table->integer('kembali');
             $table->date('tanggal');
             $table->time('jam');
             $table->timestamps();

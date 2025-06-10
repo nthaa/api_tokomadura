@@ -23,12 +23,12 @@ class StoreProductRequest extends FormRequest
     {
         return [
             //
-            'nama_produk' => 'required|max:50',
-            'harga_beli' => 'required|numeric|min:0',
-            'harga_jual' => 'required|numeric|min:0|gt:harga_beli',
+            'nama_produk' => 'required|string|max:255',
+            'harga_beli' => 'required|integer|min:0',
+            'harga_jual' => 'required|integer|min:0',
             'stok' => 'required|integer|min:0',
-            'satuan' => 'required|string|in:pcs,karton',
-            'barcode' => 'nullable|string|max:50|unique:products,barcode',
+            'satuan' => 'required|in:pcs,karton',
+            'barcode' => 'nullable|string'
         ];
     }
 }

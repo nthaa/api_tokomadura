@@ -9,7 +9,12 @@ class Sale extends Model
 {
     /** @use HasFactory<\Database\Factories\SaleFactory> */
     use HasFactory;
-    protected $fillable = ['diterima', 'tanggal', 'jam'];
+    protected $fillable = ['total_harga','diterima', 'kembali', 'tanggal', 'jam'];
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'id_users');
+    // }
 
     public function saleDetails()
     {

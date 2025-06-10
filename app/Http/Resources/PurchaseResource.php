@@ -16,14 +16,13 @@ class PurchaseResource extends JsonResource
     // public function toArray(Request $request): array
     public function toArray($request)
     {
-
+        
         return[
             'id' => $this->id,
             'supplier_id' => $this->supplier_id,
             'tanggal' => $this->tanggal,
             'jam' => $this->jam,
             'purchase_details' => PurchaseDetailResource::collection($this->purchaseDetails),
-
         ];
     }
 }

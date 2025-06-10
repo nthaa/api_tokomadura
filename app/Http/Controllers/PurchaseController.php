@@ -16,7 +16,6 @@ class PurchaseController extends Controller
     {
         //
         return PurchaseResource::collection(Purchase::paginate(10));
-
     }
 
     /**

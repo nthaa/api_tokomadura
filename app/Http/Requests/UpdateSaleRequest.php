@@ -23,7 +23,9 @@ class UpdateSaleRequest extends FormRequest
     {
         return [
             //
+            'total_harga' => 'required|numeric|min:0',
             'diterima' => 'required',
+            'kembali' => 'required',
             'tanggal' => 'required',
             'jam' => 'required',
         ];

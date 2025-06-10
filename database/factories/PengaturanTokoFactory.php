@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Quote>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PengaturanToko>
  */
-class QuoteFactory extends Factory
+class PengaturanTokoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,9 @@ class QuoteFactory extends Factory
     {
         return [
             //
-            'text' => $this->faker->text,
-            'author' => $this->faker->name,
+            'nama_toko' => $this->faker->company,
+            'alamat' => $this->faker->address,
+            'no_telp' => $this->faker->phoneNumber,
         ];
     }
 }

@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Quote extends Model
+class PengaturanToko extends Model
 {
+    /** @use HasFactory<\Database\Factories\PengaturanTokoFactory> */
     use HasFactory;
-    //
     protected $fillable = [
-        'text',
-        'author',
+        'nama_toko',
+        'alamat',
+        'no_telp',
     ];
-
 }

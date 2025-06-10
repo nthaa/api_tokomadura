@@ -15,8 +15,6 @@ class PurchaseDetailSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-
          // Mengambil data purchases dan products
          $purchases = Purchase::all();
          $products = Product::all();

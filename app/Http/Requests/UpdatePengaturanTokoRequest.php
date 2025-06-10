@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreQuoteRequest extends FormRequest
+class UpdatePengaturanTokoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,9 @@ class StoreQuoteRequest extends FormRequest
     {
         return [
             //
-            'text' => 'required|min:20',
-            'author' => 'required|min:10',
-
+            'nama_toko' => 'required|max:50',
+            'alamat' => 'required|max:255',
+            'no_telp' => 'required|max:15|regex:/^[0-9]+$/',
         ];
     }
 }

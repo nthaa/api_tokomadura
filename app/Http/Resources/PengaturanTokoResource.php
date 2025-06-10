@@ -5,21 +5,21 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class QuoteResource extends JsonResource
+class PengaturanTokoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
      */
-    // public function toArray(Request $request): array
     public function toArray($request)
     {
-        // return parent::toArray($request);
-        return[
-            'key' =>$this->id,
-            'text' =>$this->text,
-            'author' =>strtoupper($this->author),
+        return [
+            'id' => $this->id,
+            'nama_toko' => $this->nama_toko,
+            'alamat' => $this->alamat,
+            'no_telp' => $this->no_telp,
+
         ];
     }
 }
