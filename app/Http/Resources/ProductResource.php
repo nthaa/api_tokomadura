@@ -20,11 +20,11 @@ class ProductResource extends JsonResource
     {
         // return parent::toArray($request);
         return[
-            'id' => $this->id,
+            'id' => (int) $this->id,
             'nama_produk' => $this->nama_produk,
-            'harga_beli' => $this->harga_beli,
-            'harga_jual' => $this->harga_jual,
-            'stok' => $this->stok,
+            'harga_beli' => (int) $this->harga_beli,
+            'harga_jual' => (int) $this->harga_jual,
+            'stok' => (int) $this->stok,
             'satuan' => $this->satuan,
             'barcode' => $this->barcode,
         ];

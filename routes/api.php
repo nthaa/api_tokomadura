@@ -30,13 +30,13 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/purchase-details', PurchaseDetailController::class);
     Route::apiResource('/temp-purchases', TempPurchaseController::class);
     Route::apiResource('/suppliers', SupplierController::class);
-    Route::apiResource('/dashboard', DashboardController::class);
     Route::apiResource('/temp-sales', TempSaleController::class);
-    Route::apiResource('/products', ProductController::class);
     Route::apiResource('/sales', SaleController::class);
     Route::apiResource('/sale-details', SaleDetailController::class);
 
 });
+    Route::apiResource('/products', ProductController::class);
+    Route::apiResource('/dashboard', DashboardController::class);
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);
