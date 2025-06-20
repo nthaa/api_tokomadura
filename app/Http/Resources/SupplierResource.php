@@ -16,11 +16,11 @@ class SupplierResource extends JsonResource
     public function toArray($request)
     {
         return[
-            'id' => $this->id,
+            'id' => (int) $this->id,
             'nama' => $this->nama,
             'toko' => $this->toko,
             'alamat' => $this->alamat,
-            'nomor_telp' => $this->no_telp,
+            'no_telp' => $this->no_telp,
         ];
     }
 }

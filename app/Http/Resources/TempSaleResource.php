@@ -20,7 +20,7 @@ class TempSaleResource extends JsonResource
             'jumlah' => $this->jumlah,
             'harga' => $this->harga,
             'total' => $this->total,
-            
+
         ];
     }
 }

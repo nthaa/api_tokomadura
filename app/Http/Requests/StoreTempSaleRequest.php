@@ -21,16 +21,13 @@ class StoreTempSaleRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge([
-            'total' => $this->input('jumlah') * $this->input('harga')
-        ]);
 
         return [
             //
+           'product_id' => 'required|exists:products,id',
             'nama' => 'required|max:50',
             'jumlah' => 'required|integer|min:1',
             'harga' => 'required|numeric|min:0',
-            'total' => 'required|numeric|min:0',
         ];
     }
 }

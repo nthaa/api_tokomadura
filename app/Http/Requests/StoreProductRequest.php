@@ -19,16 +19,15 @@ class StoreProductRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+   public function rules()
     {
         return [
-            //
-            'nama_produk' => 'required|string|max:255',
+            'nama_produk' => 'required|string|unique:products,nama_produk',
             'harga_beli' => 'required|integer|min:0',
             'harga_jual' => 'required|integer|min:0',
             'stok' => 'required|integer|min:0',
-            'satuan' => 'required|in:pcs,karton',
-            'barcode' => 'nullable|string'
+            'satuan' => 'required|string',
+            'barcode' => 'required|string|unique:products,barcode',
         ];
     }
 }

@@ -22,12 +22,17 @@ class UpdateSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
             'total_harga' => 'required|numeric|min:0',
-            'diterima' => 'required',
-            'kembali' => 'required',
-            'tanggal' => 'required',
-            'jam' => 'required',
+            'diterima' => 'required|numeric|min:0',
+            'kembali' => 'required|numeric|min:0',
+            'tanggal' => 'required|date',
+            'jam' => 'required|string',
+
+            // Jika update juga item sale_details
+            'items' => 'sometimes|array|min:1',
+            'items.*.product_id' => 'required_with:items|integer|exists:products,id',
+            'items.*.jumlah' => 'required_with:items|integer|min:1',
+            'items.*.harga_jual_trx' => 'required_with:items|integer|min:0',
         ];
     }
 }

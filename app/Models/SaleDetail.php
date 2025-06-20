@@ -9,15 +9,13 @@ class SaleDetail extends Model
 {
     /** @use HasFactory<\Database\Factories\SaleDetailFactory> */
     use HasFactory;
-    protected $fillable = ['jumlah', 'harga_jual_trx'];
+    protected $fillable = ['sale_id','product_id','jumlah', 'harga_jual_trx'];
 
-    // Relasi ke Sale
     public function sale()
     {
         return $this->belongsTo(Sale::class);
     }
 
-    // Relasi ke Product
     public function product()
     {
         return $this->belongsTo(Product::class);

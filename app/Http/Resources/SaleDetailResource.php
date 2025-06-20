@@ -15,12 +15,11 @@ class SaleDetailResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'sale_id' => $this->sale_id,
             'product_id' => $this->product_id,
-            'product_name' => $this->product->nama_produk,
+            'nama_produk' => $this->product->nama_produk ?? 'Produk tidak ditemukan',
             'jumlah' => $this->jumlah,
             'harga_jual_trx' => $this->harga_jual_trx,
+            'subtotal' => $this->jumlah * $this->harga_jual_trx,
         ];
     }
 }

@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('temp_sales', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('nama');
             $table->integer('jumlah');
             $table->integer('harga');
             $table->integer('total');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

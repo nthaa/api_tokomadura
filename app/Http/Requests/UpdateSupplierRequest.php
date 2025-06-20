@@ -23,10 +23,10 @@ class UpdateSupplierRequest extends FormRequest
     {
         return [
             //
-            'nama' => 'required|max:50',
-            'toko' => 'required|max:50',
-            'alamat' => 'required|max:100',
-            'no_telp' => 'required|max:15',
+            'nama'     => 'required|max:100',
+            'toko'     => 'required|unique:suppliers,toko,' . $this->supplier?->id,
+            'no_telp'  => 'required|max:15|unique:suppliers,no_telp,' . $this->supplier?->id,
+            'alamat'   => 'required|string'
         ];
     }
 }

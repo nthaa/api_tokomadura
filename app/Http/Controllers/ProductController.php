@@ -6,16 +6,33 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return ProductResource::collection(Product::paginate(10));
+        $query = Product::query();
+
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where('nama_produk', 'like', "%$search%")
+                ->orWhere('barcode', 'like', "%$search%");
+        }
+
+        $sortBy = $request->get('sort_by', 'nama_produk');
+        $sortOrder = $request->get('sort_order', 'asc');
+
+        $allowedSorts = ['nama_produk', 'harga_beli', 'harga_jual', 'stok', 'barcode'];
+        if (in_array($sortBy, $allowedSorts)) {
+            $query->orderBy($sortBy, $sortOrder);
+        }
+
+        return ProductResource::collection($query->paginate(10));
     }
 
 

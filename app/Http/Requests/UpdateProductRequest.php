@@ -23,12 +23,12 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             //
-            'nama_produk' => 'required|max:50',
-            'harga_beli' => 'required|numeric|min:0',
-            'harga_jual' => 'required|numeric|min:0|gt:harga_beli',
+            'nama_produk' => 'required|unique:products,nama_produk,' . $this->product?->id,
+            'harga_beli' => 'required|integer|min:0',
+            'harga_jual' => 'required|integer|min:0|gt:harga_beli',
             'stok' => 'required|integer|min:0',
             'satuan' => 'required|string|in:pcs,karton',
-            'barcode' => 'nullable|string|max:50|unique:products,barcode',
+            'barcode' => 'nullable|string|max:50|unique:products,barcode,' . $this->product?->id,
         ];
     }
 }

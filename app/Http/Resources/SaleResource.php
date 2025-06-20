@@ -23,8 +23,8 @@ class SaleResource extends JsonResource
             'kembali' => $this->kembali,
             'tanggal' => $this->tanggal,
             'jam' => $this->jam,
-            // 'kasir' => $this->user->name,
-            'sale_details' => SaleDetailResource::collection($this->saleDetails),
+            'kasir' => $this->user->name ?? 'Kasir',
+            'details' => SaleDetailResource::collection($this->whenLoaded('saleDetails')),
 
         ];
     }

@@ -9,16 +9,15 @@ class Sale extends Model
 {
     /** @use HasFactory<\Database\Factories\SaleFactory> */
     use HasFactory;
-    protected $fillable = ['total_harga','diterima', 'kembali', 'tanggal', 'jam'];
-
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class, 'id_users');
-    // }
+    protected $fillable = ['user_id','total_harga','diterima', 'kembali', 'tanggal', 'jam'];
 
     public function saleDetails()
     {
         return $this->hasMany(SaleDetail::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

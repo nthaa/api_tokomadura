@@ -23,10 +23,10 @@ class StoreSupplierRequest extends FormRequest
     {
         return [
             //
-            'nama' => 'required|max:50',
-            'toko' => 'required|max:50',
-            'alamat' => 'required|max:100',
-            'no_telp' => 'required|max:15',
+            'nama' => 'required|string',
+            'toko' => 'required|string|unique:suppliers,toko',
+            'alamat' => 'required|string',
+            'no_telp' => 'required|string|unique:suppliers,no_telp|max:15',
         ];
     }
 }
