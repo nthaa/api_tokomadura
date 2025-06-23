@@ -84,6 +84,30 @@ class ApiAuthController extends Controller
         } else {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        // response no content
    }
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        $user = $request->user();
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json([
+                'message' => 'Password lama salah.',
+            ], 422);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Password berhasil diubah.',
+        ]);
+    }
+
 }

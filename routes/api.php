@@ -26,6 +26,8 @@
     // route middleware for authenticated user
     Route::middleware('auth:sanctum')->group(function(){
         Route::post('/logout', [ApiAuthController::class, 'logout']);
+        Route::post('/change-password', [ApiAuthController::class, 'changePassword']);
+
         Route::apiResource('/dashboard', DashboardController::class);
         Route::apiResource('/products', ProductController::class);
         Route::apiResource('/suppliers', SupplierController::class);
@@ -35,6 +37,7 @@
         Route::apiResource('/temp-sales', TempSaleController::class);
         Route::apiResource('/sales', SaleController::class);
         Route::apiResource('/sale-details', SaleDetailController::class);
+
 
 
     });
