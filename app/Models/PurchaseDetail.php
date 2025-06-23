@@ -9,7 +9,7 @@ class PurchaseDetail extends Model
 {
     /** @use HasFactory<\Database\Factories\PurchaseDetailFactory> */
     use HasFactory;
-    protected $fillable = ['harga_beli','jumlah'];
+    protected $fillable = ['purchase_id','product_id','harga_beli','jumlah', 'total',];
 
     // Relasi ke Purchase
     public function purchase()

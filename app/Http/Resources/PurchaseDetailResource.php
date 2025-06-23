@@ -16,11 +16,11 @@ class PurchaseDetailResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'purchase_id' => $this->purchase_id,
             'product_id' => $this->product_id,
-            'product_name' => $this->product->nama_produk,
+            'product' => new ProductResource($this->whenLoaded('product')),
             'harga_beli' => $this->harga_beli,
             'jumlah' => $this->jumlah,
+            'total' => $this->harga_beli * $this->jumlah,
         ];
     }
 }

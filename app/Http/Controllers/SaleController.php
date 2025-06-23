@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateSaleRequest;
 use App\Http\Resources\SaleResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 
 class SaleController extends Controller
@@ -16,10 +18,26 @@ class SaleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return SaleResource::collection(Sale::with('saleDetails')->paginate(10));
+
+public function index(Request $request)
+{
+    $query = Sale::with(['saleDetails.product', 'user']);
+
+    if ($request->filled('start_date') && $request->filled('end_date')) {
+        $query->whereBetween('tanggal', [$request->start_date, $request->end_date]);
     }
+
+    if ($request->filled('kasir')) {
+        $query->whereHas('user', function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->kasir . '%');
+        });
+    }
+
+    $sales = $query->orderByDesc('created_at')->paginate(10);
+
+    return SaleResource::collection($sales);
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -76,8 +94,7 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        return new SaleResource($sale->load('saleDetails'));
-    }
+    return new SaleResource($sale->load('saleDetails.product'));    }
 
     /**
      * Update the specified resource in storage.

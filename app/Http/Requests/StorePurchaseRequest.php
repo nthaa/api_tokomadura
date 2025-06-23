@@ -22,8 +22,12 @@ class StorePurchaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tanggal' => 'required',
-            'jam' => 'required',
+            'supplier_id' => 'required|exists:suppliers,id',
+            'items' => 'required|array|min:1',
+            'items.*.product_id' => 'required|exists:products,id',
+            'items.*.harga_beli' => 'required|numeric|min:0',
+            'items.*.jumlah' => 'required|integer|min:1',
         ];
     }
 }
+

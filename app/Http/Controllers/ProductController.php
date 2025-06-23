@@ -32,7 +32,13 @@ class ProductController extends Controller
             $query->orderBy($sortBy, $sortOrder);
         }
 
-        return ProductResource::collection($query->paginate(10));
+        if ($request->query('all') === 'true') {
+            $products = $query->orderBy('nama_produk')->get();
+            return response()->json($products);
+        }
+
+        $products = $query->paginate(10);
+        return ProductResource::collection($products);
     }
 
 

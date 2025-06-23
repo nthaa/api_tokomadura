@@ -36,6 +36,7 @@
         Route::apiResource('/sales', SaleController::class);
         Route::apiResource('/sale-details', SaleDetailController::class);
 
+
     });
 
     Route::post('/register', [ApiAuthController::class, 'register']);

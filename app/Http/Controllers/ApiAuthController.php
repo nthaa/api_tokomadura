@@ -61,7 +61,7 @@ class ApiAuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-        
+
 
         $token = $user->createToken('token')->plainTextToken;
 
@@ -75,8 +75,15 @@ class ApiAuthController extends Controller
     // logout
     public function logout(Request $request){
         // hapus token by user nya
+        if ($request->user()) {
         $request->user()->tokens()->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Logged out succesfully',
+        ]);
+        } else {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
         // response no content
-        return response()->noContent();
-    }
+   }
 }

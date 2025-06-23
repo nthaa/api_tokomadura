@@ -32,8 +32,14 @@ class SupplierController extends Controller
         if (in_array($sortBy, $allowedSorts)) {
             $query->orderBy($sortBy, $sortOrder);
         }
+            if ($request->query('all') === 'true') {
+            $suppliers = $query->orderBy('nama')->get();
+            return response()->json($suppliers);
+        }
 
-        return SupplierResource::collection($query->paginate(10));
+        $suppliers = $query->paginate(10);
+        return SupplierResource::collection($suppliers);
+
     }
 
     /**

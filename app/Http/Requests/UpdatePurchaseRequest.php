@@ -23,8 +23,15 @@ class UpdatePurchaseRequest extends FormRequest
     {
         return [
             //
-            'tanggal' => 'required',
-            'jam' => 'required',
+
+            'supplier_id' => 'required|exists:suppliers,id',
+            'tanggal' => 'required|date',
+            'jam' => 'required|date_format:H:i:s',
+
+            'items' => 'required|array|min:1',
+            'items.*.product_id' => 'required|exists:products,id',
+            'items.*.jumlah' => 'required|integer|min:1',
+            'items.*.harga_beli' => 'required|integer|min:0',
         ];
     }
 }
