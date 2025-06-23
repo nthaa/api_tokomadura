@@ -18,38 +18,38 @@ class PurchaseController extends Controller
      */
     public function index(Request $request)
 {
-    $query = Purchase::with(['supplier', 'purchaseDetails.product']);
+        $query = Purchase::with(['supplier', 'purchaseDetails.product']);
 
-    if ($request->has('search')) {
-        $search = $request->search;
-        $query->whereHas('supplier', function ($q) use ($search) {
-            $q->where('nama', 'like', "%$search%");
-        });
-    }
-
-    $sortBy = $request->get('sort_by', 'created_at');
-    $sortOrder = $request->get('sort_order', 'desc');
-
-    $allowedSorts = ['tanggal', 'created_at', 'total', 'supplier_nama'];
-
-    if (in_array($sortBy, $allowedSorts)) {
-        if ($sortBy === 'supplier_nama') {
-            $query->join('suppliers', 'purchases.supplier_id', '=', 'suppliers.id')
-                  ->orderBy('suppliers.nama', $sortOrder)
-                  ->select('purchases.*');
-        } elseif ($sortBy === 'total') {
-            $query->withSum('purchaseDetails as total_harga', 'total')
-                  ->orderBy('total_harga', $sortOrder);
-        } else {
-            $query->orderBy($sortBy, $sortOrder);
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->whereHas('supplier', function ($q) use ($search) {
+                $q->where('nama', 'like', "%$search%");
+            });
         }
-    } else {
-        // default sort by waktu terbaru
-        $query->orderByDesc('created_at');
-    }
 
-    return PurchaseResource::collection($query->paginate(10));
-}
+        $sortBy = $request->get('sort_by', 'created_at');
+        $sortOrder = $request->get('sort_order', 'desc');
+
+        $allowedSorts = ['tanggal', 'created_at', 'total', 'supplier_nama'];
+
+        if (in_array($sortBy, $allowedSorts)) {
+            if ($sortBy === 'supplier_nama') {
+                $query->join('suppliers', 'purchases.supplier_id', '=', 'suppliers.id')
+                    ->orderBy('suppliers.nama', $sortOrder)
+                    ->select('purchases.*');
+            } elseif ($sortBy === 'total') {
+                $query->withSum('purchaseDetails as total_harga', 'total')
+                    ->orderBy('total_harga', $sortOrder);
+            } elseif ($sortBy === 'tanggal') {
+            $query->orderByRaw("CONCAT(tanggal, ' ', jam) $sortOrder");
+        }
+
+        } else {
+            $query->orderByDesc('created_at');
+        }
+
+        return PurchaseResource::collection($query->paginate(10));
+    }
 
 
     /**
